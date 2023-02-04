@@ -65,7 +65,7 @@ public class OrdersController {
 				List<CartItem> cartItemList = cartData.getCartItems();
 				
 				cartItemList.forEach(cartItem -> {
-					Item item = itemRepo.findById(cartItem.getId());
+					Item item = itemRepo.findById(cartItem.getItemID());
 					amount = item.getPrice() * cartItem.getQuantity();
 					
 				});
