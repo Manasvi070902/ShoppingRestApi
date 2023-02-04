@@ -8,15 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.oracle.training.model.Cart;
-import com.oracle.training.model.Order;
+//import com.oracle.training.model.Cart;
+import com.oracle.training.model.Orders;
 import com.oracle.training.model.Payment;
-import com.oracle.training.model.User;
-import com.oracle.training.repository.CartItemsRepo;
 import com.oracle.training.repository.CartRepo;
 import com.oracle.training.repository.OrderRepo;
 import com.oracle.training.repository.PaymentRepo;
-import com.oracle.training.repository.UserRepo;
+
 @RestController
 public class PaymentController {
 	
@@ -31,17 +29,17 @@ public class PaymentController {
 		 try {
 			 int id=obj.get("id").asInt();
 			 //Order table set paid
-			 Order order=orderepo.findById(id);
-			 order.setStatusCart("Paid");
+			 Orders order=orderepo.findById(id);
+			 order.setOrderStatus("Paid");
 			 orderepo.save(order);
 //			 System.out.print(id);
 			 Payment pay=new Payment();
-			 pay.setOrderid(id);
+			 pay.setOrder(order);
 			 pay.setStatus("Paid");
 			 payrepo.save(pay);
 			 //delete from cart after payment
-			 Cart cart=cartRepo.findById(id);
-			 cartRepo.delete(cart);
+//			 Cart cart=cartRepo.findById(id);
+//			 cartRepo.delete(cart);
 			 return new ResponseEntity<>(pay,HttpStatus.OK);
 		    } catch (Exception e) {
 		      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
