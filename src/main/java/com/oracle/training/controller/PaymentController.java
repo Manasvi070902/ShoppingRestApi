@@ -1,8 +1,12 @@
 package com.oracle.training.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +50,21 @@ public class PaymentController {
 		    }
 
 	}
-	
+	@GetMapping("/pay/{id}")
+	public ResponseEntity<?> getPaymentDetails(@PathVariable Integer id) {
+		try {
+		Optional<Payment> paymentData = payrepo.findById(id);
+		if (paymentData.isPresent()) {
+		      return new ResponseEntity<>(paymentData, HttpStatus.OK);
+		    } else {
+		      return new ResponseEntity<>("No Payment Found", HttpStatus.NOT_FOUND);
+		    }
+		}
+		catch (Exception e) {
+		      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		    }
+
+	}
 	
 	
 }
