@@ -30,6 +30,10 @@ public class Order {
 		public void setStatusCart(String statusCart) {
 			this.statusCart = statusCart;
 		}
+		public Order(Integer orderID,String statusCart) {
+			this.orderID = orderID;
+		    this.statusCart = statusCart;
+		}
 		
 		
 }
