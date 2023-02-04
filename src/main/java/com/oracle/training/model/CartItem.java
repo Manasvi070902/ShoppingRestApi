@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class CartItems {
+public class CartItem {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

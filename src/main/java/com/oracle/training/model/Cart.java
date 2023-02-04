@@ -23,17 +23,8 @@ public class Cart {
 	
 	@OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "card_id", referencedColumnName = "id")
-    private List<CartItems> cartItems;
+    private List<CartItem> cartItems;
 	
-	private boolean cartStatus;
-
-	public boolean isCartStatus() {
-		return cartStatus;
-	}
-
-	public void setCartStatus(boolean cartStatus) {
-		this.cartStatus = cartStatus;
-	}
 
 	public int getId() {
 		return id;
@@ -51,11 +42,11 @@ public class Cart {
 		this.user = user;
 	}
 
-	public List<CartItems> getCartItems() {
+	public List<CartItem> getCartItems() {
 		return cartItems;
 	}
 
-	public void setCartItems(List<CartItems> cartItems) {
+	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
 	
