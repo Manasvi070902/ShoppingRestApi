@@ -16,7 +16,7 @@ public class Orders {
     private int id;
 	 
 	private String orderStatus;
-	@OneToOne(cascade = CascadeType.MERGE)
+	@OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 	private float amount;
