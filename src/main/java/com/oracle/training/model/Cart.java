@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,10 +22,9 @@ public class Cart {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 	
-	@OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "card_id", referencedColumnName = "id")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = CartItem.class)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private List<CartItem> cartItems;
-	
 
 	public int getId() {
 		return id;
